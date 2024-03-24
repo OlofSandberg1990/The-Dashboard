@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chicle&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="grid-container">
+
+        <!--Header starts-->
+        <header class="header">
+            <div class="header-div" id="time-header">
+
+            </div>
+        </header>
+        <!--Header ends-->
+
+        <!--Home section starts-->
+
+        <section class="dashboard">
+            <h1 id="dashboardHeader">Olof Sandbergs Dashboard</h1>
+            <div class="widgets">
+                <div class="widget">
+                    <h3>Snabblänkar</h3>
+                    <div class="widget-content">
+
+                        <div class="linkButton" onclick="goToLink(this)" data-url="https://www.google.se/">Google</div>
+                        <div class="linkButton" onclick="goToLink(this)"
+                            data-url="https://qlok.notion.site/SUT23-957b2a2ab7cb4dd1a02f5e6b2c01a28b">Notion</div>
+                    </div>
+                    <button id="newShortcutBtn"><i class="fa fa-plus-circle"></i>Lägg till länk</button>
+                </div>
+
+
+                    <div class="widget" id="widget2">
+                        <h3>Väder</h3>
+                        <div class="widget-content">
+
+                            <div class="weatherDivs" id="ort"></div>
+                            <div class="weatherDivs" id="tempToday">
+                                <span id="tempValue"></span>°C
+                                <div class="divIcon">
+                                    <img class="tempIcon" id="tempIcon" src="">
+                                </div>
+                            </div>
+                            <div class="weatherDivs" id="windSpeed"></div>
+                        </div>
+                    </div>
+
+            
+                <div class="widget" id="widget3">
+                    <h3>Disc Finder</h3>
+                        <div class="widget-content">
+                            <input id="discInput" type="text">
+                            <button id="searchDiscBtn">Sök</button>
+                            <!-- <div class="discError" id="discError"></div> -->
+                            <div class="discInfo">
+                                <div class="row">
+                                    
+                                    <div class="speed">Speed <span class="discNumbers" id="spanSpeed"></span></div>
+                                    <div class="glide">Glide <span class="discNumbers" id="spanGlide"></span></div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="turn">Turn <span class="discNumbers" id="spanTurn"></span></div>
+                                    <div class="fade">Fade <span class="discNumbers" id="spanFade"></span></div>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <h4>Modell</h4>
+                                    <div class="discModel" id="discModel"><span id="discModelName"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="brand">Leverantör : <span id="brandName"></span></div>
+                                </div>
+
+                        </div>
+                </div>
+                <div class="widget" id="widget4">
+                    <h3>Anteckningar</h3>
+                    <div class="widget-content">
+
+                        <textarea class="textArea" id="textarea"></textarea>
+                    </div>
+                </div>
+
+        </div>
+    </section>
+
+
+    <!--Home section ends-->
+
+    <footer class="footer">
+        <button class="newImage" id="newImageBtn"><i class="fa fa-repeat"></i> Slumpa ny bakgrundsbild</button>
+    </footer>
+    <form id="inputForm" class="inputForm">
+        <input class="inputInfo" type="text" placeholder="Ange hemsida" id="inputHomepage">
+        <input class="inputInfo" type="url" placeholder="Ange URL" id="inputUrl">
+        <button type="submit" id="submitBtn">Lägg till</button>
+        <button type="button" id="closeBtn">&#10005;</button>
+    </form>
+
+
+    <script src="/javascript/unsplash.js"></script>
+    <script src="/javascript/discgolfAPI.js"></script>
+    <script src="/javascript/time.js"></script>
+    <script src="javascript/index.js"></script>
+
+    </div>
+</body>
+
+</html>

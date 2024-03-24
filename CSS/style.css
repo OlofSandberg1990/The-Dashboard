@@ -1,0 +1,379 @@
+*{
+    box-sizing: border-box;
+    font-family: "Chicle", sans-serif;
+    
+}
+
+body, html {
+    
+    margin: 0;
+    padding: 0;
+    background-image: none;    
+    text-decoration: none;
+    background-color: tomato
+    
+  }
+  .grid-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+ 
+
+
+  .header{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Behåller endast detta för att centrera innehållet */
+    text-align: center;
+    width: 100%;
+    margin: 1rem 2rem; /* Ändrad från kommatecken till mellanslag */
+    position: fixed;      
+    z-index: 2;
+}
+
+.header .header-div{
+  padding: 1rem 8rem;
+  background-color: #fff;
+  opacity: 70%;
+  border-radius: 30px;
+  box-shadow: 0 .2rem .5rem rgba(0, 0,0,0.3) ;  
+}
+
+
+  .dashboard {
+    position: relative; /* Ställer in som förälder för z-index positionering */
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    z-index: 1; /* Ser till att dashboard ligger över bakgrundsbilden */
+  }
+  .dashboard h1{
+    font-size: 3rem;
+    color: #fff;    
+    
+  }
+  .dashboard #dashboardHeader{    
+    margin: 40px;    
+  }
+  .dashboard .widgets
+  {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    display: flex;    
+    justify-content: center;
+
+  }
+  
+  .dashboard .widgets .widget {
+    width: 300px; 
+    height: 400px; 
+    background-color: rgb(159, 159, 159, 0.7);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;    
+    
+    border-radius: 15px;
+    position: relative;
+    
+    overflow-y: auto;
+    
+  }
+  .dashboard .widgets .widget h3{
+    position: absolute;
+    margin-top: 10px;
+    color: black;
+    background-color: bisque;
+    padding: 0.3rem;    
+    border-radius: 10px;
+      
+
+  }
+  
+  .favicon{
+    width: 20px;    
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 20%;
+    background-color: white;
+     
+    
+
+    
+    
+    
+  }
+  
+    .inputForm {
+    display: none;
+    flex-direction: column;
+    align-items: center; 
+    gap: 10px; 
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: bisque;
+    
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+  #inputHomepage, #inputUrl{
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  }
+  #discInput{
+    border-radius: 5px;
+    border: none;
+    margin: 3px;
+    padding: 5px;
+    box-shadow: 0 .2rem .5rem rgba(0, 0,0,0.3) ;
+  }
+
+  #submitBtn{
+    margin-top: auto;
+    padding: 0.2rem 2rem;
+    margin-bottom: 10px;
+    background-color: (159, 159, 159, 0.7);
+    z-index: 1;
+    border-radius: 20px;
+    cursor: pointer; 
+    border: none; 
+    box-shadow: 0 .2rem .5rem rgba(0, 0,0,0.3) ;
+  }
+  #searchDiscBtn{
+    border-radius: 5px;
+    width: 3rem;
+    cursor: pointer; 
+    border: none; 
+    box-shadow: 0 .2rem .5rem rgba(0, 0,0,0.3) ;
+    padding: .2rem;
+  }
+  
+  #closeBtn {
+    
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .dashboard .widgets .widget #newShortcutBtn{
+    margin-top: auto;
+    padding: 0.2rem 2rem;
+    margin-bottom: 10px;
+    background-color: (159, 159, 159, 0.7);
+    z-index: 1;
+    border-radius: 20px;
+    cursor: pointer; 
+    border: none; 
+    box-shadow: 0 .2rem .5rem rgba(0, 0,0,0.3) ;
+  }
+  .dashboard .widgets .widget i{
+    color: green;
+    margin-right: 0.3rem;  
+  }
+
+  .dashboard .widgets .widget #newShortcutBtn:hover{
+    
+    letter-spacing: .03rem;
+    transition: all .2s linear;
+  }
+  .dashboard .widgets .widget .widget-content{
+    margin-top: 50px;
+    width: 90%;
+    height: 100%;
+    max-height: fit-content;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+  }
+  .dashboard .widgets .widget .widget-content .linkButton{
+    display: flex;
+    height: 3rem;
+    align-items: center;
+    background-color: rgb(255, 255, 255, 0.7);
+    cursor: pointer;
+    height: 3rem;
+    border-radius: 10px;
+    border: none;
+    text-align: left;
+    box-shadow: 0 .2rem .5rem rgba(0, 0,0,0.3) ;
+    margin-top: 0.5rem;
+    color: black;
+    
+  }
+  
+  .dashboard .widgets .widget .widget-content .linkButton i{
+    color: red;
+    cursor: pointer;
+  }
+  
+  .dashboard .widgets .widget .widget-content .linkButton:hover{
+    
+    background-color: rgb(155, 245, 155);
+    letter-spacing: .03rem;
+    transition: all .2s linear;
+    
+    
+  }      
+  
+
+
+.dashboard .widgets .widget .widget-content textarea{
+
+  width: 95%;
+  height: auto;
+  min-height: 90%;  
+  resize: none;
+  border-radius: 10px;
+  border: none;
+  padding: 1rem;
+  opacity: 70%;
+  background-color:white;
+  box-shadow: 0 .2rem .5rem rgba(0, 0,0,0.3) ;
+  
+  
+}
+
+.dashboard .widgets .widget .widget-content .weatherDivs
+{  display: flex;  
+  height: 3rem;
+  align-items: center;
+  background-color: rgb(255, 255, 255, 0.7);
+  text-align: left;  
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  border: none;  
+  padding-left: 10px;
+  padding-right: 10px;
+  box-shadow: 0 .2rem .5rem rgba(0, 0,0,0.3) ;
+  color: black;
+  
+}
+.dashboard .widgets .widget .widget-content .discInfo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 40%;
+  width: 100%;
+  margin-top: 30px;
+}
+  
+  .dashboard .widgets .widget .widget-content .discInfo .row {    
+    display: flex;
+    justify-content: center;
+    gap: 30%;
+    width: 100%;
+    margin-bottom: 40px;
+    
+   
+  }
+  .dashboard .widgets .widget .widget-content .row h4{
+    margin: 0;
+  }
+  .dashboard .widgets .widget .widget-content .discInfo .row span{
+    flex-basis: 60%;
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px;
+    background-color: bisque;
+    color: black;    
+    border-radius: 50%;
+    margin-left: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+  }
+  .dashboard .widgets .widget .widget-content .discError{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: tomato;
+    background-color: bisque;
+    font-size: 0.rem;
+  
+  }
+ 
+    
+  
+
+.dashboard .widgets .widget .widget-content .row .discModel{
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0;
+  background-color: bisque;
+  width: 60%;
+  height: 50px;
+  margin: auto;
+  border-radius: 20px;
+  font-size: 1.3rem;
+
+}
+.dashboard .widgets .widget .widget-content .row .brand{
+  font-size: 0.7rem;
+}
+
+
+
+.divIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem; 
+  background-color: #00bfff; 
+  margin-left: auto;
+  border-radius: 50%;
+  
+  
+  
+   
+}
+.tempIcon {
+  width: 100%;
+  height: auto;
+  
+  
+}
+
+
+footer{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  
+}
+.footer .newImage{
+  padding: 1rem 3rem;
+  margin-bottom: 10px;
+  background-color: #fff;
+  opacity: 70%;
+  border-radius: 20px;
+  cursor: pointer; 
+  border: none; 
+  box-shadow: 0 .2rem .5rem rgba(0, 0,0,0.3) ;
+}
+.footer .newImage:hover{
+  
+  
+  letter-spacing: .03rem;
+  transition: all .2s linear; /*Anger att alla ändringar sker under en övergångsperiod på 0.2 sek*/
+   
+}
