@@ -374,3 +374,48 @@ footer{
   transition: all .2s linear; /*Anger att alla ändringar sker under en övergångsperiod på 0.2 sek*/
    
 }
+
+@media (max-width: 600px) {
+  
+  .dashboard{
+    margin-top: 45vh;
+  }
+  .dashboard h1 {
+    font-size: min(max(6vw, 18px), 80px); /* Anpassar sig mellan 18px och 32px baserat på skärmens bredd */
+    padding: 0;
+    margin-bottom: 0 !important;
+  }
+  
+  .header-div{
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+    width: 20vw;
+    height: 15vh;
+    position: fixed;
+    left: 0.5rem;
+    top: 1vh;
+    justify-content: center;
+    font-size: 0.7rem;
+    border-radius: 50px !important;
+    
+    
+
+    
+  }
+  .newImage{
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+    width: 20vw;
+    height: 15vh;
+    position: fixed;
+    left: 0.5rem;
+    top: 18vh;
+    justify-content: center;
+    font-size: 0.7rem;
+    margin-bottom: 100px;
+    border-radius: 50px !important;
+  }
+}
