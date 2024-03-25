@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chicle&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chicle&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./CSS/style.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -18,9 +18,7 @@
 
         <!--Header starts-->
         <header class="header">
-            <div class="header-div" id="time-header">
-
-            </div>
+            <div class="header-div" id="time-header"></div>
         </header>
         <!--Header ends-->
 
@@ -31,11 +29,9 @@
             <div class="widgets">
                 <div class="widget">
                     <h3>Snabblänkar</h3>
-                    <div class="widget-content">
+                    <div class="widget-content" id="widget-content">
 
-                        <div class="linkButton" onclick="goToLink(this)" data-url="https://www.google.se/">Google</div>
-                        <div class="linkButton" onclick="goToLink(this)"
-                            data-url="https://qlok.notion.site/SUT23-957b2a2ab7cb4dd1a02f5e6b2c01a28b">Notion</div>
+                        
                     </div>
                     <button id="newShortcutBtn"><i class="fa fa-plus-circle"></i>Lägg till länk</button>
                 </div>
@@ -66,16 +62,16 @@
                             <div class="discInfo">
                                 <div class="row">
                                     
-                                    <div class="speed">Speed <span class="discNumbers" id="spanSpeed"></span></div>
-                                    <div class="glide">Glide <span class="discNumbers" id="spanGlide"></span></div>
+                                    <div class="discNumberDiv">Speed <span class="discNumbers" id="spanSpeed"></span></div>
+                                    <div class="discNumberDiv">Glide <span class="discNumbers" id="spanGlide"></span></div>
                                 </div>
                                 <div class="row">
 
-                                    <div class="turn">Turn <span class="discNumbers" id="spanTurn"></span></div>
-                                    <div class="fade">Fade <span class="discNumbers" id="spanFade"></span></div>
+                                    <div class="discNumberDiv">Turn <span class="discNumbers" id="spanTurn"></span></div>
+                                    <div class="discNumberDiv">Fade <span class="discNumbers" id="spanFade"></span></div>
                                 </div>
                             </div>
-                                <div class="row">
+                                <div class="row" id="rowModel">
                                     <h4>Modell</h4>
                                     <div class="discModel" id="discModel"><span id="discModelName"></span></div>
                                 </div>

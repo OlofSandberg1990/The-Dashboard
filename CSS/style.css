@@ -10,7 +10,7 @@ body, html {
     padding: 0;
     background-image: none;    
     text-decoration: none;
-    background-color: tomato
+    background-color: rgb(192, 172, 149)
     
   }
   .grid-container{
@@ -26,10 +26,10 @@ body, html {
     
     display: flex;
     align-items: center;
-    justify-content: center; /* Behåller endast detta för att centrera innehållet */
+    justify-content: center; 
     text-align: center;
     width: 100%;
-    margin: 1rem 2rem; /* Ändrad från kommatecken till mellanslag */
+    margin: 1rem 2rem; 
     position: fixed;      
     z-index: 2;
 }
@@ -44,7 +44,7 @@ body, html {
 
 
   .dashboard {
-    position: relative; /* Ställer in som förälder för z-index positionering */
+    position: relative; 
     display: flex;
     height: 100vh;
     justify-content: center;
@@ -79,11 +79,9 @@ body, html {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;    
-    
+    align-items: center;        
     border-radius: 15px;
-    position: relative;
-    
+    position: relative;    
     overflow-y: auto;
     
   }
@@ -103,13 +101,9 @@ body, html {
     margin-right: 10px;
     margin-left: 10px;
     border-radius: 20%;
-    background-color: white;
-     
-    
-
-    
-    
-    
+    background-color: white;  
+        
+  
   }
   
     .inputForm {
@@ -235,7 +229,6 @@ body, html {
   }      
   
 
-
 .dashboard .widgets .widget .widget-content textarea{
 
   width: 95%;
@@ -273,7 +266,7 @@ body, html {
   align-items: center;
   height: 40%;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 10px;
 }
   
   .dashboard .widgets .widget .widget-content .discInfo .row {    
@@ -281,25 +274,31 @@ body, html {
     justify-content: center;
     gap: 30%;
     width: 100%;
-    margin-bottom: 40px;
+    margin: 10px;
     
    
   }
   .dashboard .widgets .widget .widget-content .row h4{
     margin: 0;
   }
-  .dashboard .widgets .widget .widget-content .discInfo .row span{
-    flex-basis: 60%;
-    flex-grow: 1;
-    text-align: center;
-    padding: 10px;
-    background-color: bisque;
-    color: black;    
+  .dashboard .widgets .widget .widget-content .discInfo .row span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px; 
+    height: 50px; 
     border-radius: 50%;
-    margin-left: 10px;
+    background-color: bisque;
+    color: black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
     
   }
+  
+  #rowModel{
+      margin-top: 4rem;
+    }
+  
   .dashboard .widgets .widget .widget-content .discError{
     display: flex;
     flex-direction: column;
@@ -309,7 +308,6 @@ body, html {
     font-size: 0.rem;
   
   }
- 
     
   
 
@@ -340,7 +338,6 @@ body, html {
   background-color: #00bfff; 
   margin-left: auto;
   border-radius: 50%;
-  
   
   
    

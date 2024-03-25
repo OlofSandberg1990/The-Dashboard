@@ -1,4 +1,3 @@
-
 //DEKLARATION AV VARIABLAR
 const submitBtn = document.getElementById("submitBtn");
 const textArea = document.getElementById("textarea");
@@ -11,6 +10,8 @@ const dashboardHeader = document.getElementById("dashboardHeader")
 
 // Väntar på hela dokumentet laddats för att säkerställa att alla element är tillgängliga
 document.addEventListener("DOMContentLoaded", function () {
+  // Lägger till sparade länkar från localStorage när sidan laddas
+  displayLinks();
 
   //Ändrar värdet på headern-rubriken om det finns något sparat i dess local storage
   const savedHeader = localStorage.getItem("dashboardHeaderText");
@@ -34,17 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
       if(event.key === "Enter")
       {
         this.contentEditable = "false";
-
-        //Förhindrar att händelsen utför sitt standardbetéende. I detta fall skapa ny rad       
-        event.preventDefault(); 
-
-        //Sparar i local storage
+        event.preventDefault(); //Förhindrar att händelsen utför sitt standardbetéende. I detta fall skapa ny rad       
         localStorage.setItem("dashboardHeaderText", this.textContent);
       }
     })
-  
-
-
 
   // Spara anteckningar i lokal lagring när texten ändras
   textArea.addEventListener("input", function () {
@@ -65,26 +59,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Initierar hämtning av väderdata baserat på användarens position. 
-  //Kör antingen funktionen success eller error
   navigator.geolocation.getCurrentPosition(success, error);
 });
 
-
-
 // FUNKTIONER
-
-// Funktion för att navigera till den anginva länkes value
-function goToLink(link) {
-  console.log(link.value);
-  const url = link.getAttribute("data-url")
-
-    //Om länken har ett url-värde ska det öppnas i ett nytt fönster.
-    if(url){
-      window.open(url, "_blank")
-    }
-}
-
-
 
 // Funktion för att lägga till en ny länk och döljer formuläret
 function addNewLink(event) {
@@ -92,72 +70,90 @@ function addNewLink(event) {
   const homepageName = document.getElementById("inputHomepage").value;
   const homepageUrl = document.getElementById("inputUrl").value;
   
-  //Körs om både homepageName och homepageURL har ett värde.
   if (homepageName && homepageUrl) {
-      // Skapar huvudcontainer för länk-item
-      const linkItem = document.createElement("div");
+    //Sparar homepageName och dess url som ett objekt.
+    const link = { name: homepageName, url: homepageUrl };
 
-      //Sätter class som linkButton
-      linkItem.className = "linkButton";
-      
-      //När man klickar på länken ska dess url öppnas i ett nytt fönster.
-      linkItem.addEventListener("click", ()=>{
-        window.open(homepageUrl, "_blank");
-      });
+    // Hämtar nuvarande länkar från localStorage, eller skapar en ny lista om den inte finns
+    const links = JSON.parse(localStorage.getItem("links")) || [];
+    
+    //Pushar in objektet i links och konverterar till en sträng då locasl storage endast kan lagra strängar.
+    links.push(link);
+    localStorage.setItem("links", JSON.stringify(links));
 
-      // Skapar ett nytt .img-element där favicon ska hämtas
-      const favicon = document.createElement("img");
+    // Rensar sedan input-fälten och döljer formuläret
+    document.getElementById("inputHomepage").value = "";
+    document.getElementById("inputUrl").value = "";
+    inputForm.style.display = "none";
 
-      //Hämtar homepageUrls favicon genom en googletjänst
-      favicon.src = `https://s2.googleusercontent.com/s2/favicons?domain_url=${homepageUrl}`;
-
-      //Sätter dess className till "favicon"
-      favicon.className = "favicon";
-      
-
-      //Skapar en span för att skriva ut namnet på hemsidan.
-      const linkText = document.createElement("span");
-
-      //Sätter dess textContent till det inmatade hompageName
-      linkText.textContent = homepageName;
-      
-      //Låter texten ta upp extra utrymme
-      linkText.style.flexGrow = "1"; 
-
-      // Skapar ett nytt i-element för min soptunna.
-      const deleteIcon = document.createElement("i");
-      deleteIcon.className = "fa fa-trash";
-      deleteIcon.style.cursor = "pointer";
-
-      //När man klickar på elementet kommer följnade funktion att köras;
-      deleteIcon.onclick = function(event) {
-
-        //stopPropagation används för att stoppa händelsen från att bubbla upp till dess föräldra-element. 
-          event.stopPropagation();
-
-          //Tar bor linkItem from DOM-trädet.
-          linkItem.remove();
-      };
-
-      // Lägger till alla barn till linkItem
-      linkItem.appendChild(favicon);
-      linkItem.appendChild(linkText);
-      linkItem.appendChild(deleteIcon);
-
-      // Lägger till linkItem till widget-content
-      document.querySelector(".widget-content").appendChild(linkItem);
-
-      // Rensar input-fälten och döljer formuläret
-      document.getElementById("inputHomepage").value = "";
-      document.getElementById("inputUrl").value = "";
-      inputForm.style.display = "none";
+    // Kör funktionen för att visa länkarna
+    displayLinks();
   } else {
-      console.log("You must fill in homepageName and homepageURL");
+    console.log("You must fill in homepageName and homepageURL");
   }
 }
 
+//Funktion för att hämta listan över länk-knapparna
+function displayLinks() {
+
+  //Försöker hämta listan från local storage, hittar den inget skapas en ny.
+  const links = JSON.parse(localStorage.getItem("links")) || [];
+  const widgetContent = document.querySelector(".widget-content");
+  
+  // Rensar befintligt innehåll
+  widgetContent.innerHTML = ""; 
+
+  //Använder forEach för att skapa en ny linkButton för varje par som finns sparat i listan
+
+  links.forEach((link, index) => {
+    const linkItem = document.createElement("div");
+    linkItem.className = "linkButton";
+    linkItem.addEventListener("click", () => window.open(link.url, "_blank"));
+
+    const favicon = document.createElement("img");
+    favicon.src = `https://s2.googleusercontent.com/s2/favicons?domain_url=${link.url}`;
+    favicon.className = "favicon";
+
+    //Läger till faviconen till link-elementet
+    linkItem.appendChild(favicon);
+
+    const linkText = document.createElement("span");
+    linkText.textContent = link.name;
+    linkText.style.flexGrow = "1";
+    linkItem.appendChild(linkText);
+
+    const deleteIcon = document.createElement("i");
+    deleteIcon.className = "fa fa-trash";
+    deleteIcon.style.cursor = "pointer";
+
+    
+    deleteIcon.addEventListener("click", function(event) {
+      
+      //Stoppar "händelsebubbling" så att ett klick på iconen inte öppnar länken.
+      event.stopPropagation(); 
+
+      //Anropar funktion för att ta bort länken från local storage med indeg som argument.
+      removeLinkFromStorage(index); 
+    });
+    linkItem.appendChild(deleteIcon);
+
+    widgetContent.appendChild(linkItem);
+  });
+}
 
 
+function removeLinkFromStorage(index) {
+  const links = JSON.parse(localStorage.getItem("links")) || [];
+
+  // Avnänder mig av splice-funktionen för att ta bort objektet från links.
+  links.splice(index, 1);
+
+  // Sparar den uppdaterade listan av länkar i localStorage
+  localStorage.setItem("links", JSON.stringify(links)); 
+  
+  // Uppdaterar visningen av länkar
+  displayLinks(); 
+}
 
 // Körs om användarens position lyckas hämtas.
 function success(position) {
@@ -210,7 +206,3 @@ function updateWeather(data) {
   
 }
 
-//Tar bort den valda länken från DOM-trädet
-function removeLink(link){
-  link.remove();
-}
