@@ -77,7 +77,7 @@ function addNewLink(event) {
     // Hämtar nuvarande länkar från localStorage, eller skapar en ny lista om den inte finns
     const links = JSON.parse(localStorage.getItem("links")) || [];
     
-    //Pushar in objektet i links och konverterar till en sträng då locasl storage endast kan lagra strängar.
+    //Pushar in objektet i links och konverterar till en sträng då local storage endast kan lagra strängar.
     links.push(link);
     localStorage.setItem("links", JSON.stringify(links));
 
